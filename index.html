@@ -2,10 +2,10 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>BIODZSHOP</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&family=Montserrat:wght@400;600;700;800;900&display=swap');
 
 :root {
   --green-deep:  #0a2e0a;
@@ -22,329 +22,234 @@
   --border:      #d4e8d4;
 }
 
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-
-body{
-  background:var(--off-white);
-  color:var(--text);
-  font-family:'Tajawal',sans-serif;
-  min-height:100vh;
-  overflow-x:hidden;
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html, body {
+  height: 100%;
+  overflow: hidden;
 }
 
-body::before{
-  content:'';
-  position:fixed;inset:0;
+body {
+  background: var(--off-white);
+  color: var(--text);
+  font-family: 'Tajawal', sans-serif;
+  position: fixed;
+  inset: 0;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
   background-image:
     radial-gradient(circle at 20% 20%, rgba(45,122,45,0.06) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, rgba(15,61,15,0.08) 0%, transparent 50%),
     url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232d7a2d' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  pointer-events:none;z-index:0;
+  pointer-events: none; z-index: 0;
 }
 
-.page{
-  position:relative;z-index:1;
-  max-width:480px;margin:0 auto;
-  padding:0 20px 64px;
-  display:flex;flex-direction:column;align-items:center;
+/* ══ LAYOUT: full height flex ══ */
+.page {
+  position: relative; z-index: 1;
+  width: 100%; height: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
-/* ══════════════════════════════
-   HERO — upgraded
-══════════════════════════════ */
-.hero{
-  width:calc(100% + 40px);
-  margin-left:-20px;margin-right:-20px;
-  padding:0 20px 36px;
-  display:flex;flex-direction:column;align-items:center;
-  position:relative;
-  overflow:hidden;
+/* ══ HERO — compact fixed ══ */
+.hero {
+  flex-shrink: 0;
+  padding: 20px 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
-/* layered gradient bg */
-.hero-bg{
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(175deg, var(--green-deep) 0%, #0d3b0d 40%, #16511a 75%, #1e6b20 100%);
-  z-index:0;
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(175deg, var(--green-deep) 0%, #0d3b0d 40%, #16511a 75%, #1e6b20 100%);
+  z-index: 0;
 }
 
-/* shimmer light */
-.hero-bg::before{
-  content:'';position:absolute;inset:0;
+.hero-bg::before {
+  content: ''; position: absolute; inset: 0;
   background:
     radial-gradient(ellipse 70% 55% at 80% 20%, rgba(201,168,76,0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 15% 75%, rgba(74,158,74,0.22) 0%, transparent 55%),
-    radial-gradient(ellipse 30% 30% at 50% 50%, rgba(255,255,255,0.03) 0%, transparent 60%);
+    radial-gradient(ellipse 50% 40% at 15% 75%, rgba(74,158,74,0.22) 0%, transparent 55%);
 }
 
-/* bottom wave */
-.hero-wave{
-  position:absolute;bottom:0;left:0;right:0;
-  height:48px;z-index:1;
-  overflow:hidden;
+.hero-wave {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 36px; z-index: 1; overflow: hidden;
 }
-.hero-wave svg{display:block;width:100%;height:100%;}
+.hero-wave svg { display:block; width:100%; height:100%; }
 
-/* floating ring decoration */
-.hero-ring{
-  position:absolute;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,0.06);
+.hero-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.06);
 }
-.hero-ring-1{width:260px;height:260px;top:-60px;right:-80px;}
-.hero-ring-2{width:180px;height:180px;top:20px;left:-60px;}
-.hero-ring-3{width:120px;height:120px;bottom:40px;right:20px;}
-
-/* top badge */
-.hero-badge{
-  margin-top:32px;
-  display:flex;align-items:center;gap:7px;
-  background:rgba(255,255,255,0.1);
-  border:1px solid rgba(255,255,255,0.18);
-  border-radius:50px;
-  padding:5px 14px;
-  font-family:'Montserrat',sans-serif;
-  font-size:9px;font-weight:700;
-  letter-spacing:2.5px;
-  color:rgba(255,255,255,0.8);
-  text-transform:uppercase;
-  margin-bottom:22px;
-  position:relative;z-index:2;
-  animation:fadeUp .6s cubic-bezier(.16,1,.3,1) both;
-}
-.hero-badge-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:var(--gold-light);
-  animation:pulse 2s ease-in-out infinite;
-}
+.hero-ring-1 { width:200px; height:200px; top:-60px; right:-60px; }
+.hero-ring-2 { width:140px; height:140px; top:10px; left:-50px; }
+.hero-ring-3 { width:90px;  height:90px;  bottom:30px; right:10px; }
 
 /* logo */
-.logo-wrap{
-  width:96px;height:96px;
-  border-radius:26px;
-  background:var(--white);
-  box-shadow:
-    0 0 0 4px rgba(255,255,255,1),
-    0 0 0 8px rgba(255,255,255,0.15),
-    0 20px 50px rgba(0,0,0,0.4);
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:30px;
-  margin-top: 50px;
-  position:relative;z-index:2;
-  animation:logoIn .9s cubic-bezier(.16,1,.3,1) .1s both;
+.logo-wrap {
+  width: 92px; height: 92px;
+  border-radius: 20px;
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(255,255,255,1), 0 0 0 6px rgba(255,255,255,0.15), 0 14px 36px rgba(0,0,0,0.4);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 16px;
+  position: relative; z-index: 2;
+  animation: logoIn .9s cubic-bezier(.16,1,.3,1) .1s both;
+}
+.logo-wrap img {
+  width: 100%; height: 100%;
+  border-radius: 17px;
+  object-fit: cover;
 }
 
-.logo-wrap img{
-  width:100%;height:100%;
-  border-radius:23px;
-  object-fit:cover;
+.brand-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: var(--white);
+  text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  margin-bottom: 5px;
+  margin-top: 5px;
+  position: relative; z-index: 2;
+  animation: fadeUp .7s cubic-bezier(.16,1,.3,1) .2s both;
 }
 
-@keyframes logoIn{
-  from{opacity:0;transform:translateY(-20px) scale(.8);}
-  to{opacity:1;transform:translateY(0) scale(1);}
+.brand-tagline {
+  font-size: 10px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 3px;
+  font-weight: 300;
+  margin-bottom: 10px;
+  position: relative; z-index: 2;
+  animation: fadeUp .7s cubic-bezier(.16,1,.3,1) .3s both;
 }
 
-.brand-name{
-  font-family:'Montserrat',sans-serif;
-  font-weight:800;
-  font-size:30px;
-  letter-spacing:2px;
-  color:var(--white);
-  text-shadow:0 2px 20px rgba(0,0,0,0.4);
-  margin-bottom:6px;
-  position:relative;z-index:2;
-  animation:fadeUp .7s cubic-bezier(.16,1,.3,1) .2s both;
+.hero-content-pad { padding-bottom: 10px; }
+
+/* ══ LINKS AREA ══ */
+.links-area {
+  flex: 1;
+  padding: 20px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-height: 0;
 }
 
-.brand-tagline{
-  font-size:12px;
-  color:rgba(255,255,255,0.6);
-  letter-spacing:3px;
-  font-weight:300;
-  margin-bottom:22px;
-  position:relative;z-index:2;
-  animation:fadeUp .7s cubic-bezier(.16,1,.3,1) .3s both;
+.link-card {
+  flex: 1;
+  display: flex; align-items: center; gap: 12px;
+  padding: 0 14px;
+  background: var(--white);
+  border-radius: 14px;
+  text-decoration: none; color: var(--text);
+  box-shadow: 0 2px 8px rgba(15,61,15,0.06);
+  border: 1.5px solid var(--border);
+  transition: transform .22s, box-shadow .22s, border-color .22s;
+  opacity: 0;
+  animation: fadeUp .6s cubic-bezier(.16,1,.3,1) forwards;
+  min-height: 0;
 }
 
-/* gold ornament */
-.gold-ornament{
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:28px;
-  position:relative;z-index:2;
-  animation:fadeUp .7s cubic-bezier(.16,1,.3,1) .35s both;
-}
-.gold-ornament-line{
-  height:1px;width:36px;
-  background:linear-gradient(90deg,transparent,rgba(232,201,122,0.7));
-}
-.gold-ornament-line.rev{
-  background:linear-gradient(90deg,rgba(232,201,122,0.7),transparent);
-}
-.gold-ornament span{
-  font-size:13px;color:var(--gold-light);
-  letter-spacing:2px;
+.link-card:active { transform: scale(.97); }
+.link-card:hover {
+  transform: translateX(-3px);
+  box-shadow: 0 6px 22px rgba(15,61,15,0.14);
+  border-color: var(--green-light);
 }
 
-/* stats card */
-.stats-card{
-  width:100%;
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  border-radius:18px;
-  padding:16px 20px;
-  display:flex;gap:0;
-  border:1px solid rgba(255,255,255,0.15);
-  position:relative;z-index:2;
-  animation:fadeUp .7s cubic-bezier(.16,1,.3,1) .4s both;
-  margin-bottom:0;
+.lc-icon {
+  width: 48px; height: 48px; border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.lc-icon svg { width: 30px; height: 30px; }
+.fb-bg  { background: #E8F0FE; }
+.ig-bg  { background: #FDE8F0; }
+.tt-bg  { background: #F0F0F0; }
+.wa-bg  { background: #E6F9ED; }
+.web-bg { background: #fdf3d8; }
+.grev-bg{ background: #f1f3f4; }
+
+.lc-text { flex: 1; }
+.lc-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800; font-size: 12px;
+  letter-spacing: .5px; color: var(--text); margin-bottom: 5px;
+}
+.lc-desc { font-size: 10.5px; color: var(--sub); }
+
+.lc-arrow { font-size: 16px; color: #c4cdc4; transition: color .2s, transform .2s; }
+.link-card:hover .lc-arrow { color: var(--green-dark); transform: translateX(-3px); }
+
+.lc-stars { display:flex; gap:2px; margin-top:2px; }
+.lc-stars span { font-size: 10px; color: #FBBC04; }
+
+.d1 { animation-delay:.45s; }
+.d2 { animation-delay:.52s; }
+.d3 { animation-delay:.59s; }
+.d4 { animation-delay:.66s; }
+.d5 { animation-delay:.73s; }
+.d6 { animation-delay:.80s; }
+
+/* ══ FOOTER ══ */
+footer {
+  flex-shrink: 0;
+  padding: 6px 16px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  animation: fadeUp .7s cubic-bezier(.16,1,.3,1) 1s both;
 }
 
-.stat-item{flex:1;text-align:center;position:relative;}
-.stat-item+.stat-item::before{
-  content:'';position:absolute;right:0;top:10%;bottom:10%;
-  width:1px;background:rgba(255,255,255,0.2);
+.nfc-pill {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 50px; padding: 5px 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px; font-weight: 800;
+  letter-spacing: 2px; color: var(--sub);
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(15,61,15,0.06);
+}
+.nfc-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green-mid);
+  animation: pulse 2s ease-in-out infinite;
+}
+.footer-copy { font-size: 10px; color: #a0b8a0; letter-spacing: 1px; }
+
+/* ══ ANIMATIONS ══ */
+@keyframes logoIn {
+  from { opacity:0; transform:translateY(-16px) scale(.8); }
+  to   { opacity:1; transform:translateY(0) scale(1); }
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(16px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes pulse {
+  0%,100% { transform:scale(1);   opacity:1; }
+  50%      { transform:scale(.65); opacity:.5; }
 }
 
-.stat-val{
-  font-family:'Montserrat',sans-serif;
-  font-weight:900;font-size:19px;
-  color:var(--white);line-height:1;
-  margin-bottom:5px;
-}
-.stat-lbl{font-size:10.5px;color:rgba(255,255,255,0.65);}
-
-/* padding below hero before wave */
-.hero-content-pad{padding-bottom:52px;}
-
-/* ══════════════════════════════
-   Section label
-══════════════════════════════ */
-.sec-label{
-  width:100%;
-  font-family:'Montserrat',sans-serif;
-  font-size:10px;font-weight:800;
-  letter-spacing:3px;color:var(--sub);
-  text-transform:uppercase;
-  margin:26px 0 12px;
-  padding-right:2px;
-  display:flex;align-items:center;gap:8px;
-}
-.sec-label::after{
-  content:'';flex:1;height:1px;
-  background:linear-gradient(90deg,var(--border),transparent);
-}
-
-/* ══════════════════════════════
-   Link cards
-══════════════════════════════ */
-.links-grid{
-  width:100%;display:flex;flex-direction:column;gap:10px;
-  margin-bottom:28px;
-}
-
-.link-card{
-  width:100%;
-  display:flex;align-items:center;gap:14px;
-  padding:15px 16px;
-  background:var(--white);
-  border-radius:16px;
-  text-decoration:none;color:var(--text);
-  box-shadow:0 2px 10px rgba(15,61,15,0.06);
-  border:1.5px solid var(--border);
-  transition:transform .22s,box-shadow .22s,border-color .22s;
-  opacity:0;
-  animation:fadeUp .6s cubic-bezier(.16,1,.3,1) forwards;
-}
-
-.link-card:active{transform:scale(.97);}
-.link-card:hover{
-  transform:translateX(-3px);
-  box-shadow:0 8px 28px rgba(15,61,15,0.14);
-  border-color:var(--green-light);
-}
-
-.lc-icon{
-  width:44px;height:44px;border-radius:13px;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-}
-.lc-icon svg{width:22px;height:22px;}
-.fb-bg{background:#E8F0FE;}
-.ig-bg{background:#FDE8F0;}
-.tt-bg{background:#F0F0F0;}
-.wa-bg{background:#E6F9ED;}
-.web-bg{background:#fdf3d8;}
-.grev-bg{background:#f1f3f4;}
-
-.lc-text{flex:1;}
-.lc-name{
-  font-family:'Montserrat',sans-serif;
-  font-weight:800;font-size:13px;
-  letter-spacing:.5px;color:var(--text);margin-bottom:2px;
-}
-.lc-desc{font-size:11px;color:var(--sub);}
-
-.lc-arrow{font-size:18px;color:#c4cdc4;transition:color .2s,transform .2s;}
-.link-card:hover .lc-arrow{color:var(--green-dark);transform:translateX(-3px);}
-
-/* star mini row inside card */
-.lc-stars{display:flex;gap:2px;margin-top:3px;}
-.lc-stars span{font-size:11px;color:#FBBC04;}
-
-.d1{animation-delay:.52s;}
-.d2{animation-delay:.60s;}
-.d3{animation-delay:.68s;}
-.d4{animation-delay:.76s;}
-.d5{animation-delay:.84s;}
-.d6{animation-delay:.92s;}
-
-/* ══════════════════════════════
-   Footer
-══════════════════════════════ */
-footer{
-  width:100%;
-  display:flex;flex-direction:column;align-items:center;gap:12px;
-  animation:fadeUp .7s cubic-bezier(.16,1,.3,1) 1.05s both;
-}
-
-.nfc-pill{
-  display:flex;align-items:center;gap:8px;
-  background:var(--white);
-  border:1.5px solid var(--border);
-  border-radius:50px;padding:8px 18px;
-  font-family:'Montserrat',sans-serif;
-  font-size:10px;font-weight:800;
-  letter-spacing:2px;color:var(--sub);
-  text-transform:uppercase;
-  box-shadow:0 2px 8px rgba(15,61,15,0.06);
-}
-
-.nfc-dot{
-  width:7px;height:7px;border-radius:50%;
-  background:var(--green-mid);
-  animation:pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse{
-  0%,100%{transform:scale(1);opacity:1;}
-  50%{transform:scale(.65);opacity:.5;}
-}
-
-.footer-copy{font-size:11px;color:#a0b8a0;letter-spacing:1px;}
-
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px);}
-  to{opacity:1;transform:translateY(0);}
-}
-
-@media(max-width:380px){
-  .brand-name{font-size:24px;letter-spacing:4px;}
-  .stat-val{font-size:16px;}
+/* ══ SAFE AREA (notch/home bar) ══ */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  footer { padding-bottom: max(10px, env(safe-area-inset-bottom)); }
 }
 </style>
 </head>
@@ -353,29 +258,26 @@ footer{
 <div class="page">
 
   <!-- ══ HERO ══ -->
-  <div class="hero">
+  <div class="hero hero-content-pad">
     <div class="hero-bg"></div>
-
-    <!-- decorative rings -->
     <div class="hero-ring hero-ring-1"></div>
     <div class="hero-ring hero-ring-2"></div>
     <div class="hero-ring hero-ring-3"></div>
-
-
 
     <div class="logo-wrap">
       <img src="favicon.webp" alt="BIODZSHOP Logo">
     </div>
 
     <div class="brand-name">BIODZSHOP</div>
+   <div class="brand-tagline">HEALTH · BEAUTY · NUTRITION</div>
+
 
   </div>
 
-  <!-- ══ Social ══ -->
-  <div class="sec-label">🔗 تابعنا</div>
-  <div class="links-grid">
+  <!-- ══ LINKS ══ -->
+  <div class="links-area">
 
-    <a href="https://www.facebook.com/share/1BtQn356tt/" target="_blank" class="link-card fb d1">
+    <a href="https://www.facebook.com/share/1BtQn356tt/" target="_blank" class="link-card d1">
       <div class="lc-icon fb-bg">
         <svg viewBox="0 0 24 24" fill="#1877F2">
           <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.256h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
@@ -388,7 +290,7 @@ footer{
       <div class="lc-arrow">←</div>
     </a>
 
-    <a href="https://www.instagram.com/biodzshop?igsh=MWtpYTNtODU3MWY4bQ==" target="_blank" class="link-card ig d2">
+    <a href="https://www.instagram.com/biodzshop?igsh=MWtpYTNtODU3MWY4bQ==" target="_blank" class="link-card d2">
       <div class="lc-icon ig-bg">
         <svg viewBox="0 0 24 24" fill="none">
           <defs>
@@ -410,7 +312,7 @@ footer{
       <div class="lc-arrow">←</div>
     </a>
 
-    <a href="https://www.tiktok.com/@biodzshop?_r=1&_t=ZS-96yrthfuvdA" target="_blank" class="link-card tt d3">
+    <a href="https://www.tiktok.com/@biodzshop?_r=1&_t=ZS-96yrthfuvdA" target="_blank" class="link-card d3">
       <div class="lc-icon tt-bg">
         <svg viewBox="0 0 24 24" fill="#010101">
           <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.86a8.17 8.17 0 004.79 1.53V6.94a4.85 4.85 0 01-1.02-.25z"/>
@@ -423,7 +325,7 @@ footer{
       <div class="lc-arrow">←</div>
     </a>
 
-    <a href="https://wa.me/message/IHQUIP7A3GASL1" target="_blank" class="link-card wa d4">
+    <a href="https://wa.me/message/IHQUIP7A3GASL1" target="_blank" class="link-card d4">
       <div class="lc-icon wa-bg">
         <svg viewBox="0 0 24 24" fill="#25D366">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -436,10 +338,9 @@ footer{
       <div class="lc-arrow">←</div>
     </a>
 
-    <!-- ══ Google Review card — مثل باقي الكروت ══ -->
     <a href="https://g.page/r/CV3LLBChm-GLEBE/review" target="_blank" class="link-card d5">
       <div class="lc-icon grev-bg">
-        <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
+        <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
           <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
           <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
           <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC04"/>
@@ -471,10 +372,7 @@ footer{
 
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-copy">BIODZSHOP © 2026 — الجزائر 🇩🇿</div>
-  </footer>
+
 
 </div>
 </body>
